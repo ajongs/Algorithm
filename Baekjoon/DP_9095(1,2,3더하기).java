@@ -12,6 +12,7 @@ class Main{
         }
         
     }
+    //use for
     public static int addOneTwoThree(int n){
         d[0]=1;
         d[1]=1;
