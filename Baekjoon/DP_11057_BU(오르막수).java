@@ -29,3 +29,33 @@ class Main{
     }
     
 }
+//Resolve myself
+// import java.io.*;
+
+// class Main{
+//     public static void main(String[] args) throws IOException{
+//         BufferedReader br  = new BufferedReader(new InputStreamReader(System.in));
+//         int n = Integer.parseInt(br.readLine());
+        
+//         int[][] d= new int[n+1][10];
+//         for(int i=0; i<=9; i++){
+//             d[1][i] = 1;
+//         }
+//         for(int k=2; k<=n; k++){
+//             for(int i=0; i<10; i++){
+//                 for(int j=0; j<=i; j++){
+//                     d[k][i] += d[k-1][j]; 
+//                     d[k][i] %= 10007;
+//                 }
+//             }
+//         }
+        
+//         long answer =0;
+//         for(int i=0; i<10; i++){
+//             answer += d[n][i];
+//         }
+//         System.out.println(answer %10007);
+        
+//     }
+    
+// }
