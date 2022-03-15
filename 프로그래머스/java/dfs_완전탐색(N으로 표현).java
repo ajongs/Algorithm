@@ -1,8 +1,12 @@
 import java.util.*;
 class Solution {
     static int min = Integer.MAX_VALUE;
+    
     public int solution(int N, int number) {
         dfs(0,N,number,0);
+        if(min==Integer.MAX_VALUE){
+            return -1;
+        }
         return min;
     }
     static void dfs(int depth, int N, int number, int current){
