@@ -1,6 +1,40 @@
 import java.util.*;
 class Solution {
     public int solution(int n, int[][] edge) {
+        int answer = 0;
+        boolean[] visited = new boolean[n+1];
+        boolean[][] map = new boolean[n+1][n+1];
+
+        for(int i=0; i<edge.length; i++){
+            map[edge[i][0]][edge[i][1]] = true;
+            map[edge[i][1]][edge[i][0]] = true;
+        }
+
+        //bfs
+        Queue<Integer> q = new LinkedList<>();
+        q.offer(1);
+        while(!q.isEmpty()){
+            //가장 마지막번째로 순회하는 녀석들
+            answer = q.size();
+
+            for(int i=0; i<answer; i++){
+                int cur = q.poll();
+
+                for(int next = 2; next<n+1; next++){
+                    if (visited[next] == true || map[cur][next] ==false ) continue;
+                    visited[next] = true;
+                    q.offer(next);
+                }
+            }
+        }
+
+        return answer;
+    }
+}
+/*
+import java.util.*;
+class Solution {
+    public int solution(int n, int[][] edge) {
         ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
         int answer = 0;
         int[] dist = new int[n+1];
@@ -41,4 +75,4 @@ class Solution {
         }
         return answer;
     }
-}
+}*/
