@@ -1,4 +1,38 @@
+//최적화 풀이 
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.StringTokenizer;
 
+class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int n = Integer.parseInt(br.readLine());
+        //각 도시의 리터당 가격
+        int[] fuel = new int[n];
+        //거리
+        int[] dis = new int[n-1];
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        for(int i=0; i<n-1; i++){
+            dis[i] = Integer.parseInt(st.nextToken());
+        }
+
+        st = new StringTokenizer(br.readLine(), " ");
+        for(int i=0; i<n; i++){
+            fuel[i] = Integer.parseInt(st.nextToken());
+        }
+
+        long answer=0;
+        long min = Integer.MAX_VALUE;
+        for(int i=0; i<n-1; i++){  
+            min = Math.min(min, fuel[i]); //굳이 먼저 뒤의 노드를 파악하지 않고 앞전 노드가 최소값이라면 기억해 놨다가 이 값으로 계속 계산하면됨 
+            answer += (min*dis[i]);
+        }
+        System.out.println(answer);
+    }
+}
 /*
 
 //내풀이
