@@ -1,3 +1,33 @@
+//최적화 풀이
+import java.io.*;
+
+class Main{
+    static int[] coin;
+    static int k;
+    static int n;
+    static int min = Integer.MAX_VALUE;
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] str = br.readLine().split(" ");
+        n = Integer.parseInt(str[0]);
+        k = Integer.parseInt(str[1]);
+
+        coin = new int[n];
+
+        for(int i=0; i<n; i++){
+            coin[i] = Integer.parseInt(br.readLine());
+        }
+
+        int answer =0;
+        for(int i=n-1; i>=0; i--){
+            answer += k/coin[i];
+            k %= coin[i];
+        }
+
+        System.out.println(answer);
+    }
+}
+/*
 import java.io.*;
 
 class Main{
@@ -50,3 +80,4 @@ class Main{
         return answer;
     }
 }
+*/
