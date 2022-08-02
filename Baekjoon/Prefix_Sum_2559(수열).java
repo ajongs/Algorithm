@@ -38,3 +38,32 @@ class Main{
         System.out.println(max);
     }
 }
+
+//resolve
+/*
+import java.io.*;
+
+class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] str = br.readLine().split(" ");
+        int n = Integer.parseInt(str[0]);
+        int k = Integer.parseInt(str[1]);
+
+        str = br.readLine().split(" ");
+
+
+        int sum =0;
+        //먼저 sum 채우기
+        for(int i=0; i<k; i++){
+            sum += Integer.parseInt(str[i]);
+        }
+        int max = sum;
+        for(int i=1; i<n-k+1; i++){
+            sum = sum - Integer.parseInt(str[i-1]) + Integer.parseInt(str[i+k-1]);
+            max = Math.max(sum, max);
+        }
+        System.out.println(max);
+    }
+}
+*/
