@@ -24,3 +24,31 @@ class Main{
         }
     }
 }
+//resolve
+/*
+import java.io.*;
+
+class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] str = br.readLine().split(" ");
+        int n = Integer.parseInt(str[0]);
+        int m = Integer.parseInt(str[1]);
+        
+        str = br.readLine().split(" ");
+        int[] sum = new int[n];
+        sum[0] = Integer.parseInt(str[0]);
+        for(int i=1; i<n; i++){
+            sum[i] = sum[i-1] + Integer.parseInt(str[i]);
+        }
+        StringBuilder sb = new StringBuilder();
+        for(int k=0; k<m; k++){
+            str = br.readLine().split(" ");
+            int i = Integer.parseInt(str[0]);
+            int j = Integer.parseInt(str[1]);
+            if(i==1) sb.append(sum[j-1]+"\n");
+            else sb.append(sum[j-1]-sum[i-2]+"\n");
+        }
+        System.out.println(sb);
+    }
+}*/
