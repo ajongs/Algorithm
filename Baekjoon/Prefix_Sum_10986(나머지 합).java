@@ -34,3 +34,39 @@ class Main{
         System.out.println(answer);
     }
 }
+
+//Resolve
+/*
+import java.io.*;
+
+class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] str = br.readLine().split(" ");
+        int n = Integer.parseInt(str[0]);
+        int m = Integer.parseInt(str[1]);
+        str = br.readLine().split(" ");
+        //(sum[i] - sum[j]) % m = 0
+        //(sum[i]%m) - sum[j]%m = 0;
+        // sum[i]%m = sum[j]%m;
+        int[] count = new int[m];
+        int sum=0;
+        for(int i=0; i<n; i++){
+            sum += Integer.parseInt(str[i])%m;
+            count[sum%m]++;
+        }
+        //0번째는 혼자서도 나누어 떨어지므로 짝을 이룰 필요가 없음
+        //따라서 먼저 더하기
+        long answer = count[0];
+
+        for(int i=0; i<m; i++){ //sum[i]와 sum[j]가 같은 부분을 찾아야함
+            // (i,j) 쌍이 항상 i<=j를 만족하는 경우의 수는 count에 있는 나머지값들로 2개 뽑기(조합)
+            //조합 공식은 n!/(n-r!)r! 여기서 r=2 이므로 n!/(n-2)!2! => n(n-1)/2 로 줄일 수 있음
+            int num = count[i];
+            answer += (long)num*(num-1)/2;
+        }
+
+        System.out.println(answer);
+    }
+}
+*/
