@@ -1,3 +1,48 @@
+//Resolve 성능개선
+//중복 순열을 이용한 풀이 
+
+import java.io.*;
+import java.util.Arrays;
+
+class Main{
+    static boolean[] remoteNum = new boolean[10];
+    static int min = Integer.MAX_VALUE;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int n = Integer.parseInt(br.readLine());
+        int m = Integer.parseInt(br.readLine());
+        min = Math.abs(n - 100);
+        Arrays.fill(remoteNum, true);
+        if(m!=0){
+            String[] str  = br.readLine().split(" ");
+            for(int i=0; i<str.length; i++ ){
+                int index = Integer.parseInt(str[i]);
+                remoteNum[index] = false; //사용불가 처리
+            }
+        }
+        int length = Integer.toString(n).length();
+        for(int i=1; i<7; i++){
+            dfs(0, i, n, "");
+        }
+
+        System.out.println(min);
+
+    }
+    static void dfs(int depth, int length, int n, String sum){
+        if(depth == length){
+            int temp = Integer.parseInt(sum);
+            min = Math.min(min, length+Math.abs(temp - n));
+            return;
+        }
+        for(int i=0; i<10; i++){
+            if(remoteNum[i]){
+                dfs(depth+1, length, n, sum+i);
+            }
+        }
+    }
+}
+/*
 import java.io.*;
 import java.util.Arrays;
 
@@ -44,3 +89,4 @@ class Main{
         System.out.println(min);
     }
 }
+*/
