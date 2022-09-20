@@ -1,0 +1,62 @@
+import java.util.*;
+class Solution {
+    static Map<String, ArrayList<Integer>> map = new HashMap<>();
+    public int[] solution(String[] info, String[] query) {
+        int[] answer = new int[query.length];
+        
+        for(int i=0; i<info.length; i++){
+            String[] temp = info[i].split(" ");
+            combi(0, temp, "");
+        }
+        //map의 list 오름차순 정렬
+        for(String key : map.keySet()){
+            Collections.sort(map.get(key));
+        }
+        //3. 쿼리들 받아서 이분탐색
+        for(int i=0; i<query.length; i++){
+            String[] temp = query[i].replace(" and", "").split(" ");
+            String q = "";
+            for(int j=0; j<4; j++){
+                q += temp[j];
+            }
+            int count = binarySearch(q, Integer.parseInt(temp[4]));
+            answer[i] = count;
+        }
+        
+        return answer;
+        
+    }
+    public static int binarySearch(String q, int score){
+        //일단 맵 조회하고
+        if(map.get(q) == null) return 0;
+        ArrayList<Integer> list = map.get(q);
+        
+        int left = 0;
+        int right = list.size();
+        while(left < right){
+            int mid = (left+right)/2;
+            
+            if(list.get(mid) >= score)
+                right = mid;
+            else 
+                left = mid + 1;
+        }
+        
+        return list.size()-left;
+        
+    }
+    public static void combi(int depth, String[] info, String key){
+        if(depth==4){
+            //map에 저장하자 
+            int score = Integer.parseInt(info[4]);
+            ArrayList<Integer> list = map.getOrDefault(key, new ArrayList<Integer>());
+            list.add(score);
+            map.put(key, list);
+
+            return;
+        }
+        combi(depth+1, info, key+info[depth]);
+        combi(depth+1, info, key+"-");
+    }
+    
+}
